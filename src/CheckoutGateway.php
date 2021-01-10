@@ -7,6 +7,7 @@ use Omnipay\PayPal\Message\OrderRequest;
 use Omnipay\PayPal\Message\CaptureRequest;
 use Omnipay\Common\Message\AbstractRequest;
 use Omnipay\PayPal\Message\RestTokenRequest;
+use Omnipay\PayPal\Message\RefundCaptureRequest;
 
 /**
  * PayPal Checkout Class
@@ -238,5 +239,18 @@ class CheckoutGateway extends AbstractGateway
     public function completePurchase(array $parameters = [])
     {
         return $this->createRequest(CaptureRequest::class, $parameters);
+    }
+
+    /**
+     * Refund a Captured Payment
+     *
+     * To refund captured payments (authorization transaction) created by a authorize request.
+     *
+     * @param array $parameters
+     * @return RefundCaptureRequest
+     */
+    public function refundCapture(array $parameters = array())
+    {
+        return $this->createRequest(RefundCaptureRequest::class, $parameters);
     }
 }
