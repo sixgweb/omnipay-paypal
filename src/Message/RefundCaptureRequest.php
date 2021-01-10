@@ -15,7 +15,7 @@ namespace Omnipay\PayPal\Message;
  * @see RestAuthorizeRequest
  * @see RestCaptureRequest
  */
-class RefundCaptureRequest extends AbstractRestRequest
+class RefundCaptureRequest extends AbstractRequest
 {
     public function getData()
     {
@@ -23,10 +23,10 @@ class RefundCaptureRequest extends AbstractRestRequest
 
         return array(
             'amount' => array(
-                'currency' => $this->getCurrency(),
-                'total' => $this->getAmount(),
+                'currency_code' => $this->getCurrency(),
+                'value' => $this->getAmount(),
             ),
-            'description' => $this->getDescription(),
+            'note_to_payer' => $this->getDescription(),
         );
     }
 
